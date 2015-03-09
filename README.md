@@ -1,2 +1,3 @@
 # CSCE431-NoNameYet
-CSCE 431 - Project (No Name Yet)
+Brazos Valley Center For Assisted Living Project
+Pivotal Tracker can be found here: https://www.pivotaltracker.com/n/projects/1296268
