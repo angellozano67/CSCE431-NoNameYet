@@ -15,7 +15,7 @@ end
 gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'high_voltage'
-gem 'mysql2'
+gem 'pg'
 group :development do
   gem 'better_errors'
   gem 'html2haml'
