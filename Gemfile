@@ -15,7 +15,7 @@ end
 gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'high_voltage'
-gem 'pg'
+gem 'pg', '~> 0.18.1'
 gem 'tzinfo-data'
 gem 'tzinfo'
 group :development do
