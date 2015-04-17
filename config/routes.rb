@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'index' => 'public#indexTEST'
   get 'signup' => 'users#new'
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
