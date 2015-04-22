@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '2.1.5'
+ruby '2.2.0'
 gem 'rails', '4.2.1'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -15,7 +15,7 @@ end
 gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'high_voltage'
-gem 'pg'
+gem 'pg', '~> 0.18.1'
 gem 'tzinfo-data'
 gem 'tzinfo'
 group :development do
