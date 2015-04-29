@@ -18,6 +18,7 @@ gem 'high_voltage'
 gem 'pg', '~> 0.18.1'
 gem 'tzinfo-data'
 gem 'tzinfo'
+gem 'bcrypt'
 group :development do
   gem 'better_errors'
   gem 'html2haml'
