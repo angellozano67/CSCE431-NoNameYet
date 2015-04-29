@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-    root 'application#index'
-    get  'about', to: 'application#about'
-    get  'contact', to: 'application#contact'
-    get  'login', to: 'application#login'
-	get  'signup', to:'users#new'
+    root               'application#index'
+    get    'about'   => 'application#about'
+    get    'contact' => 'application#contact'
+    get    'login'   => 'application#login'
+	get    'signup'  => 'users#new'
+	get    'login'   => 'sessions#new'
+	post   'login'   => 'sessions#create'
+	delete 'logout'  => 'sessions#destroy'
 
     resources :users
     # The priority is based upon order of creation: first created -> highest priority.
