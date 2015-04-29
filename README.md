@@ -4,6 +4,4 @@ Brazos Valley Center For Assisted Living Project
 
 Pivotal Tracker can be found here: https://www.pivotaltracker.com/n/projects/1296268
 
-This is the branch for the admin page.
-
 **In order to add a primary key using PostgreSQL Studio, set data type to Serial, then edit Constraints.**
