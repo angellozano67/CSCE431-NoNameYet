@@ -15,7 +15,7 @@
     <% @maintenance.each do |maintenance| %>
       <tr>
 		<td><%= maintenance.id %></td>
-        <td><%= maintenance.issue %></td>
+        <td><%= maintenance.issue_string %></td>
         <td><%= maintenance.created_at %></td>
 		    <td><%= user.fixed %></td>
       </tr>
@@ -25,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Request', new_maintenance_path %>
+<%= link_to 'New Request', new_request_path %>
