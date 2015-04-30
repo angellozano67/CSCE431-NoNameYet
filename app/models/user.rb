@@ -33,8 +33,7 @@ class User < ActiveRecord::Base
 	end
 	
 	def forget
-		self.remember_token = nil
-		update_attribute(:remember_digest, remember_token)
+		update_attribute(:remember_digest, nil)
 	end
 	class << self
 		def digest(string)
