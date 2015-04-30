@@ -1,26 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Users</h1>
+<h1>Listing Maintenance Requests</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
+      <th>Problem</th>
+      <th>Time</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <% @maintenance.each do |maintenance| %>
       <tr>
-		<td><%= user.id %></td>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-		<td><%= user.verified %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td><%= maintenance.id %></td>
+        <td><%= maintenance.issue %></td>
+        <td><%= maintenance.created_at %></td>
+		<td><%= user.fixed %></td>
+        <td><%= link_to 'Show', maintenance %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New Request', new_maintenance_path %>
