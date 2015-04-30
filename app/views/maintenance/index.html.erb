@@ -14,7 +14,7 @@
   <tbody>
     <% @maintenance_forms.each do |maintenanceF| %>
       <tr>
-		<td><%= maintenance.id %></td>
+		<td><%= maintenanceF.id %></td>
         <td><%= maintenanceF.issue_string %></td>
         <td><%= maintenanceF.created_at %></td>
 		    <td><%= maintenanceF.fixed %></td>
