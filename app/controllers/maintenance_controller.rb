@@ -3,6 +3,10 @@ class MaintenanceController < ApplicationController
     @maintenance = MaintenanceForm.new
   end
 
+  def index
+    @users = MaintenanceForm.all
+  end
+
   def show
   @maintenance = MaintenanceForm.find(params[:id])
   end
