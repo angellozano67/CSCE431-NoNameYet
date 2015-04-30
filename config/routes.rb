@@ -2,7 +2,7 @@ Rails.application.routes.draw do
     root               'application#index'
     get    'about'   => 'application#about'
     get    'contact' => 'application#contact'
-    get    'login'   => 'application#login'
+    # get    'login'   => 'application#login'
 	get    'signup'  => 'users#new'
 	get    'login'   => 'sessions#new'
 	post   'login'   => 'sessions#create'
