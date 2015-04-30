@@ -12,12 +12,12 @@
   </thead>
 
   <tbody>
-    <% @maintenance.each do |maintenanceForm| %>
+    <% @maintenance_forms.each do |maintenanceF| %>
       <tr>
 		<td><%= maintenance.id %></td>
-        <td><%= maintenance.issue_string %></td>
-        <td><%= maintenance.created_at %></td>
-		    <td><%= user.fixed %></td>
+        <td><%= maintenanceF.issue_string %></td>
+        <td><%= maintenanceF.created_at %></td>
+		    <td><%= maintenanceF.fixed %></td>
       </tr>
     <% end %>
   </tbody>
