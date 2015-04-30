@@ -1,21 +1,21 @@
 class MaintenanceController < ApplicationController
   def new
-    @maintenance = MaintenanceForm.new
+    @maintenance_forms = MaintenanceForm.new
   end
 
   def index
-    @users = MaintenanceForm.all
+    @maintenance_forms = MaintenanceForm.all
   end
 
   def show
-  @maintenance = MaintenanceForm.find(params[:id])
+  @maintenance_forms = MaintenanceForm.find(params[:id])
   end
 
   def create
-    @maintenance = MaintenanceForm.new(maintenance_params)
-    if @maintenance.save
+    @maintenance_forms = MaintenanceForm.new(maintenance_params)
+    if @maintenance_forms.save
       flash[:success] = "Thank you for letting us know, we will address the issue."
-      redirect_to @maintenance
+      redirect_to @maintenance_forms
     else
       render "new"
     end
@@ -25,7 +25,7 @@ class MaintenanceController < ApplicationController
   private
 
     def maintenance_params
-      params.require(:maintenance).permit(:issueString, :timestamp)
+      params.require(:maintenance_forms).permit(:issueString, :timestamp)
     end
 
 end
