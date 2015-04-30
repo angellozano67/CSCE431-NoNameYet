@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Problem:</strong>
+  <%= @maintenance.issueString %>
+</p>
+
+<p>
+  <strong>Date/Time:</strong>
+  <%= @maintenance.created_at %>
+</p>
+
+<%= link_to 'Back', maintenance_path %>
