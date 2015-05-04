@@ -15,7 +15,7 @@ class MaintenanceController < ApplicationController
     @maintenance_forms = MaintenanceForm.new(maintenance_params)
     if @maintenance_forms.save
       flash[:success] = "Thank you for letting us know, we will address the issue."
-      redirect_to @maintenance_forms
+      redirect_to :back
     else
       render "new"
     end
