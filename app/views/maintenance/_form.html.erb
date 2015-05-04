@@ -1,15 +1,4 @@
 <%= form_for(@maintenance_forms) do |f| %>
-  <% if @maintenance_forms.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@maintenance_forms.errors.count, "error") %> prohibited this maintenance request from being saved:</h2>
-
-      <ul>
-      <% @maintenance_forms.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= f.label :issue_string %><br>
