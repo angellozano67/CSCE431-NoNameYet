@@ -8,7 +8,7 @@
 
 	  <% if @user.isadmin? %>
 	  <%= f.label :verified %>
-	  <%= f.check_box :verified, class: 'form-control' %>
+	  <%= f.check_box :verified, class: 'form-control', 'true', 'false' %>
 	  <% end %>
 	  
       <%= f.label :name %>

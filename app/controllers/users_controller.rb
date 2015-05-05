@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :show]
   before_action :admin_user, only: [:destroy, :index]
 
+  # GET /users/
   def index
 	@users = User.all
   end
@@ -16,11 +17,6 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-  end
-  def verify
-	@user = User.find(params[:id])
-	verify @user
-	redirect_to users_url
   end
   # GET /users/1/edit
   #def edit
@@ -38,6 +34,8 @@ class UsersController < ApplicationController
 		render 'new'
 	end
   end
+  
+  # POST /users/1
   def update
 	@user = User.find(params[:id])
 	if @user.update_attributes(user_params)
@@ -47,35 +45,15 @@ class UsersController < ApplicationController
 		render 'edit'
 	end
   end
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
-  #def update
-  #  respond_to do |format|
-  #    if @user.update(user_params)
-  #      format.html { redirect_to @user, notice: 'User was successfully updated.' }
-  #      format.json { render :show, status: :ok, location: @user }
-  #    else
-  #      format.html { render :edit }
-  #      format.json { render json: @user.errors, status: :unprocessable_entity }
-  #    end
-  #  end
-  #end
-
+  
   # DELETE /users/1
-  # DELETE /users/1.json
-  #def destroy
-  #  @user.destroy
-  #  respond_to do |format|
-  #    format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-  #    format.json { head :no_content }
-  #  end
-  #end
   def destroy
 	User.find(params[:id]).destroy
 	flash[:success] = "User deleted"
 	redirect_to users_url
   end
   
+  # GET /users/1/edit
   def edit
 	@user = User.find(params[:id])
   end
