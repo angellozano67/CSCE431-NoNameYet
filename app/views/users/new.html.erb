@@ -17,6 +17,18 @@
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
+	  
+	  <%= f.label :address %>
+	  <%= f.text_field :address, class: 'form-control' %>
+	  
+	  <%= f.label :organization %>
+	  <%= f.text_field :organization, class: 'form-control' %>
+	  
+	  <%= f.label :insuranceprovider, "Insurance Provider" %>
+	  <%= f.text_field :insuranceprovider, class: 'form-control' %>
+	  
+	  <%= f.label :policynum, "Insurance Policy Number" %>
+	  <%= f.text_field :policynum, class: 'form-control' %>
 
       <%= f.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
