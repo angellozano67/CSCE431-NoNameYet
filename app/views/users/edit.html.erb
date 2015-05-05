@@ -6,7 +6,7 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
-	  <% if current_user.isadmin? %>
+	  <% if current_user.isadmin? && !current_user?(user) %>
 	  <%= f.label :verified %>
 	  <%= f.check_box :verified, class: 'form-control', 'verified' => 'true', 'verified' => 'false' %>
 	  <% end %>
@@ -22,6 +22,18 @@
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
+	  
+	  <%= f.label :address %>
+	  <%= f.text_field :address, class: 'form-control' %>
+	  
+	  <%= f.label :organization %>
+	  <%= f.text_field :organization, class: 'form-control' %>
+	  
+	  <%= f.label :insuranceprovider %>
+	  <%= f.text_field :insuranceprovider, class: 'form-control' %>
+	  
+	  <%= f.label :policynum %>
+	  <%= f.text_field :policynum, class: 'form-control' %>
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>

@@ -39,11 +39,6 @@ class UsersController < ApplicationController
   def update
 	@user = User.find(params[:id])
 	if @user.update_attributes(user_params)
-		#if user_params["verified"] == '1'
-		#	@user.verified = 'true'
-		#else
-		#	@user.verified = 'false'
-		#end
 		flash[:success] = "Profile updated."
 		redirect_to @user
 	else
@@ -71,7 +66,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :verified)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :verified, :notes, :address, :organization, :insuranceprovider, :policynum)
     end
 	
 	def logged_in_user
