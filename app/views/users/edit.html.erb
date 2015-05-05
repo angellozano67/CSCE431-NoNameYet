@@ -6,6 +6,11 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
+	  <% if @user.isadmin? %>
+	  <%= f.label :verified %>
+	  <%= f.check_box :verified, class: 'form-control' %>
+	  <% end %>
+	  
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 
