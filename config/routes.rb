@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get    'login'   => 'application#login'
 	get    'signup'  => 'users#new'
 	get    'login'   => 'sessions#new'
-    get    'maintenance' => 'maintenance#index'
+    get    'maintenance_forms' => 'maintenance#index'
     get    'new_request' => 'maintenance#new'
 	post   'login'   => 'sessions#create'
 	delete 'logout'  => 'sessions#destroy'
