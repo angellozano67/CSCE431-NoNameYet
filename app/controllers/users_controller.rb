@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   def update
 	@user = User.find(params[:id])
 	if @user.update_attributes(user_params)
-		if user_params.verified == '1'
+		if user_params["verified"] == '1'
 			@user.verified = 'true'
 		else
 			@user.verified = 'false'
