@@ -10,7 +10,7 @@
 	</aside>
 	<% if @user.isadmin? %>
 		<b>User Class:</b> <span style="color:blue">Administrator</span><br>
-		<b>Administrator Notes:</b> <%= @user.notes %>
+		<b>Administrator Notes:</b> <%= @user.notes %><br>
 	<% end %>
 	<b>Account Status:<b/>
 	<% if @user.verified? %>
@@ -21,6 +21,6 @@
 	<b>Email:</b> <%= @user.email %><br>
 	<b>Address:</b> <%= @user.address %><br>
 	<b>Organization:</b> <%= @user.organization %><br>
-	<b>Insurance Provider:</b> <%= @user.insuranceprovider %>
+	<b>Insurance Provider:</b> <%= @user.insuranceprovider %><br>
 	<b>Insurance Policy Number:</b> <%= @user.policynum %>
 </div>
