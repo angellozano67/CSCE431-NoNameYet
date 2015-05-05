@@ -1,4 +1,5 @@
 class MaintenanceFormsController < ApplicationController
+
   def new
     @maintenance_form = MaintenanceForm.new
   end
