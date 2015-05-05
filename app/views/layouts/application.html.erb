@@ -22,9 +22,13 @@
 		<li>|</li>
 		<% if logged_in? && current_user.verified? %>
 		<!-- Only users that are verified will be able to see these links. -->
-		<!-- PLACE SCHEDULING LINKS HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERE -->
-		<li>|</li>
+		<!-- PLACE SCHEDULING LINKS IN PLACE OF THE BELOW LINEEEEEEEEEEEEE -->
+		<li>Verified User</li>
+		<% else %>
+		<!-- Leave this one alone though. -->
+		<li>Unverified User</li>
 		<% end %>
+		<li>|</li>
 		<% if logged_in? %>
 		<li><%= link_to "Profile", current_user %></li>
 		<li><%= link_to "Settings", edit_user_path(current_user) %></li>
@@ -32,7 +36,7 @@
 		<li><%= link_to "User List", users_path %></li>
 		<% end %>
 		<li>|</li>
-		<li><span style='color:red'><%= link_to "Log Out", logout_path, method: "delete" %></span></li>
+		<li><%= link_to "Log Out", logout_path, method: "delete" %></li>
 		<% else %>
         <li><%= link_to 'Login', login_url %></li>
 		<% end %>
