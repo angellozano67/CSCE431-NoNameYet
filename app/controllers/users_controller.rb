@@ -17,7 +17,11 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-
+  def verify
+	@user = User.find(params[:id])
+	verify @user
+	redirect_to users_url
+  end
   # GET /users/1/edit
   #def edit
   #end
