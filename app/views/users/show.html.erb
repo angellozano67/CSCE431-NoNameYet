@@ -1,5 +1,5 @@
 <% provide(:title, @user.name) %>
-<% if current_user.isadmin? || current_user(@user) %>
+<% if ((current_user.isadmin?()) || (current_user(@user))) %>
 <div class="row">
 	<aside class="col-md-4">
 		<section class="user_info">
