@@ -12,7 +12,7 @@ class MaintenanceController < ApplicationController
   end
 
   def create
-    @maintenance_form = MaintenanceForm.new(maintenance_params)
+    @maintenance_form = MaintenanceForm.new(params[:issue_string])
     if @maintenance_form.save
       flash[:success] = "Thank you for letting us know, we will address the issue."
       redirect_to @maintenance_form
@@ -22,10 +22,10 @@ class MaintenanceController < ApplicationController
 
   end
 
-  private
+  #private
 
-    def maintenance_params
-      params.require(:maintenance_form).permit(:issueString)
-    end
+    #def maintenance_params
+      #params.require(:maintenance_form).permit(:issueString)
+    #end
 
 end
