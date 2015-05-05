@@ -1,6 +1,58 @@
-<h1>Editing User</h1>
+<% provide(:title, "Edit user") %>
+<% if current_user?(@user) %>
+<h1>Update your profile</h1>
+<% else %>
+<h1>Update <%= @user.name %>'s profile</h1>
+<% end %> 
 
-<%= render 'form' %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages' %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+	  <% if current_user.isadmin? %>
+	  
+	  <% if !current_user?(@user) %>
+	  <%= f.label :verified %>
+	  <%= f.check_box :verified, class: 'form-control', 'verified' => 'true', 'verified' => 'false' %>
+	  <% end %>
+	  
+	  <%= f.label :notes, "Administrator Notes" %>
+	  <%= f.text_field :notes, class:'form-control' %>
+	  
+	  <% end %>
+	  
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+	  
+	  <%= f.label :address %>
+	  <%= f.text_field :address, class: 'form-control' %>
+	  
+	  <%= f.label :organization %>
+	  <%= f.text_field :organization, class: 'form-control' %>
+	  
+	  <%= f.label :insuranceprovider, "Insurance Provider" %>
+	  <%= f.text_field :insuranceprovider, class: 'form-control' %>
+	  
+	  <%= f.label :policynum, "Insurance Policy Number" %>
+	  <%= f.text_field :policynum, class: 'form-control' %>
+	  <br>
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+	<br>
+    <div class="gravatar_edit">
+	  <b>Gravatar:</b> 
+      <%= gravatar_for @user %> - 
+      <a href="http://gravatar.com/emails" target=_blank>Change (external link)</a><br>
+    </div>
+  </div>
+</div>

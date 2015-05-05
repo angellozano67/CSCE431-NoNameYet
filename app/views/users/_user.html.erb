@@ -1,0 +1,13 @@
+<li>
+  <%= gravatar_for user %>
+  <%= link_to user.name, user %>
+  <% if user.verified? %>
+	| <span style="color:green">Verified User</span>
+  <% else %>
+	| <span style="color:red">Unverified User</span>
+  <% end %>
+  | <%= link_to "edit", controller: "users", action: "edit", id: user %> 
+	<% if !current_user?(user) %>
+    | <%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %>
+	<% end %>
+</li>
