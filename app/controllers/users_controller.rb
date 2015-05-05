@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :show]
   before_action :admin_user, only: [:destroy, :index]
+  #before_action :verified_user, only: 
 
   # GET /users/
   def index
@@ -68,6 +69,11 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :verified, :notes, :address, :organization, :insuranceprovider, :policynum)
     end
+	
+	def verified_user
+		@user = User.find(params[:id])
+		redirect_to(root_url) unless (current_user.verified?)
+	end
 	
 	def logged_in_user
 		unless logged_in?

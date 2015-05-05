@@ -44,10 +44,11 @@
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
-
+	<br>
     <div class="gravatar_edit">
-      <%= gravatar_for @user %>
-      <a href="http://gravatar.com/emails" target=_blank>change</a>
+	  <b>Gravatar:</b> 
+      <%= gravatar_for @user %>&nbsp;&nbsp;&nbsp;
+      <a href="http://gravatar.com/emails" target=_blank>Change (external link)</a>
     </div>
   </div>
 </div>
