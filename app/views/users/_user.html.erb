@@ -2,10 +2,10 @@
   <%= gravatar_for user %>
   <%= link_to user.name, user %>
 	<% if !current_user?(user) %>
-	<% if !user.verified? %>
-	| <%= link_to "Deny Access", user, method: :verify, data: { confirm: "You sure?" } %>
+	<% if user.verified? %>
+	| <%= link_to "Deny Access", user, method: :verify %>
 	<% else %>
-	| <%= link_to "Grant Access", user, method: :verify, data: { confirm: "You sure?" } %>
+	| <%= link_to "Grant Access", user, method: :verify %>
 	<% end %>
     | <%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %>
 	<% end %>
