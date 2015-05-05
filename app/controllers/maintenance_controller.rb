@@ -25,7 +25,7 @@ class MaintenanceController < ApplicationController
   private
 
     def maintenance_params
-      params.require(:maintenance_form).permit(:issueString, :timestamp)
+      params.require(:maintenance_form).permit(:issueString)
     end
 
 end
