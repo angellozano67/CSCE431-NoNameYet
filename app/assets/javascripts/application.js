@@ -22,6 +22,7 @@
 //= require_tree .
 
 var reservationReady = function() {
+    if (!jQuery('.reservation')) return;
 
     var datetimepickerstart = jQuery('#reservation-datetimepicker-start').datetimepicker({
         locale: 'en',
@@ -32,32 +33,6 @@ var reservationReady = function() {
         locale: 'en',
         // defaultDate: '1/1/2015',
         format: 'LT',
-    });
-
-    jQuery('#reservation-form-submit').click(function() {
-        // var start = datetimepickerstart.data('DateTimePicker').date().format('MM/DD/YYYY - H:mm');
-        var start = datetimepickerstart.data('DateTimePicker').date().utc().format();
-        // var end = datetimepickerend.data('DateTimePicker').date().format('MM/DD/YYYY - H:mm');
-        var end = datetimepickerend.data('DateTimePicker').date().utc().format();
-
-        var formData = {startDate: start, endDate: end};
-
-        jQuery.ajax({
-            url : "/reservations/create",
-            type: "POST",
-            data : formData,
-            success: function(data, textStatus, jqXHR)
-            {
-                console.log(data);
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                console.log("ERROR");
-                console.log(jqXHR);
-            }
-        });
-
-        return false;
     });
 
     var calendar = jQuery('#calendar').fullCalendar({
@@ -104,6 +79,50 @@ var reservationReady = function() {
             // calendar.fullCalendar('unselect');
         }
     });
+
+    jQuery('#reservation-form-submit').click(function() {
+        // var start = datetimepickerstart.data('DateTimePicker').date().format('MM/DD/YYYY - H:mm');
+        var start = datetimepickerstart.data('DateTimePicker').date().utc().format();
+        // var end = datetimepickerend.data('DateTimePicker').date().format('MM/DD/YYYY - H:mm');
+        var end = datetimepickerend.data('DateTimePicker').date().utc().format();
+
+        var formData = {startDate: start, endDate: end};
+
+        jQuery.ajax({
+            url : "/reservations/create",
+            type: "POST",
+            data : formData,
+            success: function(data, textStatus, jqXHR)
+            {
+                // Don't need to do this as long as updating GCal
+                // var eventJson = jQuery.parseJSON(data);
+                // var start = new Date(parseInt(eventJson['start']) * 1000),
+                //     end = new Date(parseInt(eventJson['end']) * 1000);
+                // var startUTC = new Date(start.getTime() + start.getTimezoneOffset() * 60000),
+                //     endUTC = new Date(end.getTime() + end.getTimezoneOffset() * 60000);
+                // var calEvent = {
+                //     title: 'Vehicle Reservation',
+                //     start: startUTC,
+                //     end: endUTC
+                // };
+
+                // calendar.fullCalendar('renderEvent', calEvent, true);
+                jQuery('.reservation-modal').modal('hide');
+
+                calendar.fullCalendar('unselect');
+                calendar.fullCalendar('refetchEvents');
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                console.log("ERROR");
+                console.log(jqXHR);
+            }
+        });
+
+        return false;
+    });
 }
 
-jQuery('.reservation').ready(reservationReady);
+jQuery(document).ready(reservationReady);
+// jQuery(document).ready(reservationReady);
+jQuery(window).on('page:change', reservationReady);

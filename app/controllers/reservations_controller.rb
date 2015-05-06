@@ -1,6 +1,8 @@
 class ReservationsController < ApplicationController
     before_action :logged_in_user, only: [:index,:create]
     before_action :verified_user, only: [:index,:create]
+    before_action :admin_user, only: [:all]
+    before_action :correct_user, only: [:destroy]
     def index
 
     end
@@ -14,8 +16,28 @@ class ReservationsController < ApplicationController
         res.end_time = endDate.to_time.to_i
         res.save
 
-        render plain: startDate.to_time.to_i
+        # ADD EVENT TO GOOGLE CALENDAR
+
+        event = {:name => "Vehicle Reservation: #{current_user.name}", :start => res.start_time, :end => res.end_time}
+
+        require 'json'
+
+        render plain: event.to_json
     end
+    def all
+        @reservations = Reservation.all
+    end
+
+    def destroy
+        Reservation.find(params[:id]).destroy
+
+        # REMOVE EVENT TO GOOGLE CALENDAR
+
+        flash[:success] = "Reservation deleted"
+        redirect_to :back
+
+    end
+
     def logged_in_user
         unless logged_in?
             store_location
@@ -29,5 +51,13 @@ class ReservationsController < ApplicationController
             flash[:danger] = "You're account is not verified"
             redirect_to "/users/#{current_user.id}"
         end
+    end
+
+    def admin_user
+        redirect_to(root_url) unless current_user.isadmin?
+    end
+    def correct_user
+        @reservation = Reservation.find(params[:id])
+        redirect_to(root_url) unless (current_user.id == @reservation.user_id || current_user.isadmin?)
     end
 end
