@@ -25,18 +25,18 @@ ActiveRecord::Schema.define(version: 20150506090333) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "start_time"
+    t.string  "end_time"
+  end
+
   create_table "tokens", force: :cascade do |t|
     t.string   "access_token"
     t.string   "refresh_token"
     t.datetime "expires_at"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-end
-
-  create_table "reservations", force: :cascade do |t|
-    t.integer "user_id"
-    t.string  "start_time"
-    t.string  "end_time"
   end
 
   create_table "users", force: :cascade do |t|
