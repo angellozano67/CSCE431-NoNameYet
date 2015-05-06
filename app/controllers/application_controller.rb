@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+    before_action :logged_in_user, only: [:reservation]
     def index
 
     end
@@ -11,6 +12,7 @@ class ApplicationController < ActionController::Base
     def login
 
     end
+<<<<<<< HEAD
 
     def newauth
         
@@ -22,6 +24,10 @@ class ApplicationController < ActionController::Base
       access_token: @auth['token'],
       refresh_token: @auth['refresh_token'],
       expires_at: Time.at(@auth['expires_at']).to_datetime)
+=======
+    def reservation
+
+>>>>>>> 1849ebcda017ced2672202701ff8e79843daa93c
     end
     # Prevent CSRF attacks by raising an exception.
     # For APIs, you may want to use :null_session instead.

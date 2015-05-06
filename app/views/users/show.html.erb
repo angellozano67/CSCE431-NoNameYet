@@ -6,8 +6,10 @@
 			<%= gravatar_for @user %>
 			<%= @user.name %>
 		</h1>
-		<% if current_user.isadmin? %>
+		<% if @user.isadmin? %>
 			<strong>User Class:</strong> <span style="color:blue">Administrator</span><br>
+		<% end %>
+		<% if current_user.isadmin? %>
 			<strong>Administrator Notes:</strong> <%= @user.notes %><br>
 		<% end %>
 		<strong>Account Status:</strong>
@@ -21,6 +23,33 @@
 		<strong>Organization:</strong> <%= @user.organization %><br>
 		<strong>Insurance Provider:</strong> <%= @user.insuranceprovider %><br>
 		<strong>Insurance Policy Number:</strong> <%= @user.policynum %><br>
+		<h2>Current Reservations</h2>
+		<% if @reservations.length < 1 %>
+			<% if not current_user.verified %>
+				<p>You must be verified to make reservations.</p>
+			<% else %>
+				<p>No current reservations</p>
+			<% end %>
+		<% else %>
+			<table class="table table-striped table-bordered table-hover table-condensed">
+				<thead>
+					<tr>
+					  <th>Start Date</th>
+					  <th>End Date</th>
+					  <th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+				<% @reservations.each do |r| %>
+				    <tr>
+				        <td><%= DateTime.strptime(r.start_time,'%s').strftime('%B %d, %Y - %I:%M%P') %></td>
+				        <td><%= DateTime.strptime(r.end_time,'%s').strftime('%B %d, %Y - %I:%M%P') %></td>
+				        <td><%= link_to "Delete", r, method: :delete, data: { confirm: "Are you sure you want to delete this reservation?" } %></td>
+				    </tr>
+				<% end %>
+				</tbody>
+			</table>
+		<% end %>
 	</div>
 	<div class="col-sm-12 col-md-3">
 		<%= link_to "Edit Account", "/users/#{@user.id}/edit", :class => 'btn btn-primary user-profile-edit-btn' %>

@@ -1,6 +1,18 @@
 <%= form_for(@user) do |f| %>
-  <%= render 'shared/error_messages' %>
-
+  <% if logged_in? && current_user.isadmin? %>
+	  <% if !current_user?(@user) %>
+	  <div class="form-group">
+	  <%= f.label :verified %>
+	  <%= f.check_box :verified, class: 'form-control', 'verified' => 'true', 'verified' => 'false' %>
+	  </div>
+	  <% end %>
+	  
+	  <div class="form-group">
+	  <%= f.label :notes, "Administrator Notes" %>
+	  <%= f.text_field :notes, class:'form-control' %>
+	  </div>
+  <% end %>
+  
   <div class="form-group">
     <%= f.label :name, "Name" %> <span style=color:red>*</span>
     <%= f.text_field :name, class: 'form-control' %>
@@ -12,12 +24,18 @@
   </div>
   
   <div class="form-group">
-    <%= f.label :password %> <span style=color:red>*</span>
+    <%= f.label :password %>
+	<% if @user.new_record? %>
+	<span style=color:red> *</span>
+	<% end %>
     <%= f.password_field :password, class: 'form-control' %>
   </div>
   
   <div class="form-group">
-    <%= f.label :password_confirmation, "Password Confirmation" %> <span style=color:red>*</span>
+    <%= f.label :password_confirmation, "Password Confirmation" %>
+	<% if @user.new_record? %>
+	<span style=color:red> *</span>
+	<% end %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
   
@@ -42,6 +60,6 @@
   </div>
     
   <div class="form-group">
-    <%= f.submit @user.new_record? ? 'Create account' : 'Edit account', class: "btn btn-primary" %>
+    <%= f.submit @user.new_record? ? 'Create account' : 'Save Changes', class: "btn btn-primary" %>
   </div>
 <% end %>

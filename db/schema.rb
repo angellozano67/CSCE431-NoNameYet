@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(version: 20150506090333) do
     t.datetime "expires_at"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "start_time"
+    t.string  "end_time"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,4 +46,5 @@ ActiveRecord::Schema.define(version: 20150506090333) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "reservations", "users"
 end
