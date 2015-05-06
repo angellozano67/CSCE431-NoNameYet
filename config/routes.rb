@@ -11,8 +11,10 @@ Rails.application.routes.draw do
 	delete 'logout'  => 'sessions#destroy'
     get    'reservations' => 'reservations#index'
     post    'reservations/create' => 'reservations#create'
+    get    'reservations/all' => 'reservations#all'
+    delete    'reservations/destroy' => 'reservations#destroy'
 
-    resources :users, :maintenance_forms
+    resources :users, :maintenance_forms, :reservations
     # The priority is based upon order of creation: first created -> highest priority.
     # See how all your routes lay out with "rake routes".
 
