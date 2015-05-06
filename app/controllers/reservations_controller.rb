@@ -16,6 +16,8 @@ class ReservationsController < ApplicationController
         res.end_time = endDate.to_time.to_i
         res.save
 
+        # ADD EVENT TO GOOGLE CALENDAR
+
         event = {:name => "Vehicle Reservation: #{current_user.name}", :start => res.start_time, :end => res.end_time}
 
         require 'json'
