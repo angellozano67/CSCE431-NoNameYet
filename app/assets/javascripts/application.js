@@ -12,7 +12,31 @@
 //
 //= require jquery
 //= require jquery_ujs
-
 //= require turbolinks
+//= require_tree ./fullcalendar/lib
+//= require_tree ./fullcalendar
 //= require bootstrap-sprockets
 //= require_tree .
+
+var reservationReady = function() {
+    jQuery('#calendar').fullCalendar({
+        lang: 'en',
+    
+        // To make your own Google API key, follow the directions here:
+        // http://fullcalendar.io/docs/google_calendar/
+        googleCalendarApiKey: 'AIzaSyAGmJE0j1dmN8V2zTKB4ts7qt1j2QlAoIg',
+    
+        // US Holidays
+        events: '0t4f3bofduamfqof89t96tg1jk@group.calendar.google.com',
+        
+        eventClick: function(event) {
+            // opens events in a popup window
+            window.open(event.url, 'gcalevent', 'width=700,height=600');
+            return false;
+        },
+        
+        
+    });
+}
+
+jQuery('.reservation').ready(reservationReady);
