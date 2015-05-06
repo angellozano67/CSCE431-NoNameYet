@@ -25,7 +25,7 @@
   
   <div class="form-group">
     <%= f.label :password %>
-	<% if @user.new_record %>
+	<% if @user.new_record? %>
 	<span style=color:red> *</span>
 	<% end %>
     <%= f.password_field :password, class: 'form-control' %>
@@ -33,7 +33,7 @@
   
   <div class="form-group">
     <%= f.label :password_confirmation, "Password Confirmation" %>
-	<% if @user.new_record %>
+	<% if @user.new_record? %>
 	<span style=color:red> *</span>
 	<% end %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
