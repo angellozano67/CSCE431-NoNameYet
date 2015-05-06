@@ -35,7 +35,7 @@
 				<li><%= link_to "User List", users_path %></li>
 			<% end %>
 			<li>|</li>
-			<li><%= link_to "Log Out (#{@user.name})", logout_path, method: "delete" %></li>
+			<li><%= link_to "Log Out (#{@current_user.name})", logout_path, method: "delete" %></li>
 		<% else %>
 			<li><%= link_to 'Login', login_url %></li>
 		<% end %>
