@@ -34,8 +34,6 @@ var reservationReady = function() {
         format: 'LT',
     });
 
-<<<<<<< HEAD
-=======
     jQuery('#reservation-form-submit').click(function() {
         // var start = datetimepickerstart.data('DateTimePicker').date().format('MM/DD/YYYY - H:mm');
         var start = datetimepickerstart.data('DateTimePicker').date().utc().format();
@@ -62,7 +60,6 @@ var reservationReady = function() {
         return false;
     });
 
->>>>>>> Reservation logic
     var calendar = jQuery('#calendar').fullCalendar({
         lang: 'en',
         timezone: 'America/Chicago',
@@ -139,6 +136,7 @@ var reservationReady = function() {
 
                 calendar.fullCalendar('unselect');
                 calendar.fullCalendar('refetchEvents');
+
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
