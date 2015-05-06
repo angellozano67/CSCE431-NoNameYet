@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     #get    'new_request' => 'maintenance#new'
 	post   'login'   => 'sessions#create'
 	delete 'logout'  => 'sessions#destroy'
-    get    'reservation' => 'application#reservation'
+    get    'reservations' => 'reservations#index'
+    post    'reservations/create' => 'reservations#create'
 
     resources :users, :maintenance_forms
     # The priority is based upon order of creation: first created -> highest priority.
