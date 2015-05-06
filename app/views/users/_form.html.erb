@@ -1,10 +1,12 @@
 <%= form_for(@user) do |f| %>
   <% if logged_in? && current_user.isadmin? %>
 	  <% if !current_user?(@user) %>
-	  <div class="form-group">
-	  <%= f.label :verified %>
-	  <%= f.check_box :verified, class: 'form-control', 'verified' => 'true', 'verified' => 'false' %>
-	  </div>
+		<div class="form-group">
+		<%= f.label :verified %>
+		<%= f.check_box :verified, class: 'form-control', 'verified' => 'true', 'verified' => 'false' %>
+		</div>
+	  <% elsif !current_user.verified? %>
+		<%= f.hidden_field :verified, 'verified' => 'true' %>
 	  <% end %>
 	  
 	  <div class="form-group">
