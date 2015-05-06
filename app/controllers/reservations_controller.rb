@@ -1,7 +1,8 @@
 class ReservationsController < ApplicationController
     before_action :logged_in_user, only: [:index,:create]
     before_action :verified_user, only: [:index,:create]
-    before_action :admin_user, only: [:all,:destroy]
+    before_action :admin_user, only: [:all]
+    before_action :correct_user, only: [:destroy]
     def index
 
     end
@@ -15,7 +16,7 @@ class ReservationsController < ApplicationController
         res.end_time = endDate.to_time.to_i
         res.save
 
-        event = {:name => "Vehicle Reservation: #{current_user.name}", :start => params[:startDate], :end => params[:endDate]}
+        event = {:name => "Vehicle Reservation: #{current_user.name}", :start => res.start_time, :end => res.end_time}
         require 'json'
 
         render plain: event.to_json
@@ -27,7 +28,7 @@ class ReservationsController < ApplicationController
     def destroy
         Reservation.find(params[:id]).destroy
         flash[:success] = "Reservation deleted"
-        redirect_to '/reservations/all'
+        redirect_to :back
     end
 
     def logged_in_user
@@ -46,5 +47,9 @@ class ReservationsController < ApplicationController
     end
     def admin_user
         redirect_to(root_url) unless current_user.isadmin?
+    end
+    def correct_user
+        @reservation = Reservation.find(params[:id])
+        redirect_to(root_url) unless (current_user.id == @reservation.user_id || current_user.isadmin?)
     end
 end
