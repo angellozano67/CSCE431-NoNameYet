@@ -22,6 +22,7 @@
 //= require_tree .
 
 var reservationReady = function() {
+    if (!jQuery('.reservation')) return;
 
     var datetimepickerstart = jQuery('#reservation-datetimepicker-start').datetimepicker({
         locale: 'en',
@@ -148,4 +149,6 @@ var reservationReady = function() {
     });
 }
 
-jQuery('.reservation').ready(reservationReady);
+jQuery(document).ready(reservationReady);
+// jQuery(document).ready(reservationReady);
+jQuery(window).on('page:change', reservationReady);
