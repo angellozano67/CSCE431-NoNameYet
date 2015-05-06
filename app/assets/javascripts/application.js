@@ -136,7 +136,6 @@ var reservationReady = function() {
 
                 calendar.fullCalendar('unselect');
                 calendar.fullCalendar('refetchEvents');
-
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
