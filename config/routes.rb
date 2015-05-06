@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     get  'contact', to: 'application#contact'
     get  'login', to: 'application#login'
 
-    resources :users
+    resources :users 
+    resources :calendar
     # The priority is based upon order of creation: first created -> highest priority.
     # See how all your routes lay out with "rake routes".
 

@@ -1,6 +1,127 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset='utf-8' />
+<link rel='stylesheets' src='assets/fullcalendar.css' />
+<link rel='stylesheets' src='assets/fullcalendar.print.css' />
+<script type="text/javascript" src='assets/jquery.min.js'></script>
+<script type="text/javascript" src="assets/jquery-ui.custom.min.js"></script>
+<script language="JavaScript" type="text/javascript" src='assets/moment.min.js'></script>
+<script type="text/javascript" src='assets/fullcalendar.min.js'></script>
+
+
+<script>
+
+  $(document).ready(function() {
+    
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,basicWeek,basicDay'
+      },
+      defaultDate: '2015-02-12',
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2015-02-01'
+        },
+        {
+          title: 'Long Event',
+          start: '2015-02-07',
+          end: '2015-02-10'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: '2015-02-09T16:00:00'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: '2015-02-16T16:00:00'
+        },
+        {
+          title: 'Conference',
+          start: '2015-02-11',
+          end: '2015-02-13'
+        },
+        {
+          title: 'Meeting',
+          start: '2015-02-12T10:30:00',
+          end: '2015-02-12T12:30:00'
+        },
+        {
+          title: 'Lunch',
+          start: '2015-02-12T12:00:00'
+        },
+        {
+          title: 'Meeting',
+          start: '2015-02-12T14:30:00'
+        },
+        {
+          title: 'Happy Hour',
+          start: '2015-02-12T17:30:00'
+        },
+        {
+          title: 'Dinner',
+          start: '2015-02-12T20:00:00'
+        },
+        {
+          title: 'Birthday Party',
+          start: '2015-02-13T07:00:00'
+        },
+        {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: '2015-02-28'
+        }
+      ]
+    });
+    
+  });
+
+</script>
+<!-- <link rel='stylesheets' src='fhttps://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.css' />
+<link rel='stylesheets' src='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.print.css' media='print' /> -->
+<!--<script language="JavaScript" type="text/javascript" src='assets/jquery.min.js'></script>
+<script language="JavaScript" type="text/javascript" src='assets/moment.min.js'></script> -->
+
+<!--
+<script type="text/javascript" src='http://fullcalendar.io/js/fullcalendar-2.3.1/lib/moment.min.js'></script>
+<script type="text/javascript" src='http://fullcalendar.io/js/fullcalendar-2.3.1/lib/jquery.min.js'></script>
+<script type="text/javascript" src="http://fullcalendar.io/js/fullcalendar-2.3.1/lib/jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src='http://fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.min.js'></script>
+
+<script>
+$(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+
+    $('#calendar').fullCalendar({
+        // put your options and callbacks here
+    })
+
+});
+</script> -->
+
+<!-- JQuery DatePicker -->
+<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>  -->
+
+  <!-- End DatePicker -->
+
+
+
   <title>BVCIL - Share-A-Van System</title>
   <link href='http://fonts.googleapis.com/css?family=Arvo:400,400italic|Roboto+Condensed:300italic,400italic,400' rel='stylesheet' type='text/css'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +130,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+ 
   <header>
     <a href="index.html" id="logo">
       <h1>Brazos Valley Center for Independent Living</h1>
@@ -23,15 +145,20 @@
       </ul>
     </nav>
   </header>
+ <style> 
 
+</style>
   <div class="container">
       <%= yield %>
   </div>
+  
 
   <footer>
     <a href="https://twitter.com/bvcil"><%= image_tag("twitter-wrap.png", :alt => "Twitter Logo", :class => "social-icon") %></a>
     <a href="https://www.facebook.com/bvcil"><%= image_tag("facebook-wrap.png", :alt => "Facebook Logo", :class => "social-icon") %></a>
     <p>&copy; 2015 Brazos Valley Center for Independent Living.</p>
   </footer>
+  <!--<p>Date: <input type="text" id="datepicker"></p> 
+  <div id='calendar'></div> -->
 </body>
 </html>
