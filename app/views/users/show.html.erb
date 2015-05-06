@@ -10,7 +10,7 @@
 	</aside>
 	<div class="col-md-8">
 		<h3>User Details:</h3>
-		<% if @user.isadmin? %>
+		<% if current_user.isadmin? %>
 			<b>User Class:</b> <span style="color:blue">Administrator</span><br>
 			<b>Administrator Notes:</b> <%= @user.notes %><br>
 		<% end %>

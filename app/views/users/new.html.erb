@@ -6,22 +6,22 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
-      <%= f.label :name %>
+      <%= f.label :name, "Name" %> <span style=color:red>*</span>
       <%= f.text_field :name, class: 'form-control' %>
 
-      <%= f.label :email %>
+      <%= f.label :email %> <span style=color:red>*</span>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password %>
+      <%= f.label :password %> <span style=color:red>*</span>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "Password Confirmation" %> <span style=color:red>*</span>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 	  
-	  <%= f.label :address %>
+	  <%= f.label :address %> <span style=color:red>*</span>
 	  <%= f.text_field :address, class: 'form-control' %>
 	  
-	  <%= f.label :organization %>
+	  <%= f.label :organization %> <span style=color:red>*</span>
 	  <%= f.text_field :organization, class: 'form-control' %>
 	  
 	  <%= f.label :insuranceprovider, "Insurance Provider" %>

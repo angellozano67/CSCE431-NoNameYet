@@ -14,6 +14,5 @@ class CreateUsers < ActiveRecord::Migration
 	  t.string :insuranceprovider
 	  t.string :policynum
     end
-	
   end
 end
