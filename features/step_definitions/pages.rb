@@ -13,3 +13,7 @@ end
 Then /^I see "(.*)"$/ do |display_content|
    expect(page).to have_content(display_content) 
 end
+
+And /^when I click "(.*)"$/ do |link_text|
+    click_link link_text
+end
