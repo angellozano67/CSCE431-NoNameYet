@@ -2,35 +2,7 @@
 <h1>Sign up</h1>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages' %>
-
-      <%= f.label :name, "Name" %> <span style=color:red>*</span>
-      <%= f.text_field :name, class: 'form-control' %>
-
-      <%= f.label :email %> <span style=color:red>*</span>
-      <%= f.email_field :email, class: 'form-control' %>
-
-      <%= f.label :password %> <span style=color:red>*</span>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.label :password_confirmation, "Password Confirmation" %> <span style=color:red>*</span>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-	  
-  	  <%= f.label :address %> <span style=color:red>*</span>
-  	  <%= f.text_field :address, class: 'form-control' %>
-  	  
-  	  <%= f.label :organization %> <span style=color:red>*</span>
-  	  <%= f.text_field :organization, class: 'form-control' %>
-  	  
-  	  <%= f.label :insuranceprovider, "Insurance Provider" %>
-  	  <%= f.text_field :insuranceprovider, class: 'form-control' %>
-  	  
-  	  <%= f.label :policynum, "Insurance Policy Number" %>
-  	  <%= f.text_field :policynum, class: 'form-control' %>
-
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
-    <% end %>
+  <div class="col-xs-12 col-sm-6 col-md-3">
+  <%= render "form" %>
   </div>
 </div

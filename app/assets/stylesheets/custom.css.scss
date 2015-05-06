@@ -34,3 +34,14 @@ aside {
 .gravatar_edit {
   margin-top: 15px;
 }
+
+
+@media screen and (min-width: 480px) {
+
+}
+
+@media screen and (min-width: 660px) {
+  .user-profile-edit-btn {
+    float: right;
+  }
+}

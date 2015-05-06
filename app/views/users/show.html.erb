@@ -1,30 +1,28 @@
 <% provide(:title, @user.name) %>
 <div class="row">
     <%= render 'shared/error_messages' %>
-	<aside class="col-md-4">
-		<section class="user_info">
-			<h1>
-				<%= gravatar_for @user %>
-				<%= @user.name %>
-			</h1>
-		</section>
-	</aside>
-	<div class="col-md-8">
-		<h3>User Details:</h3>
+	<div class="col-sm-12 col-md-9 user-profile">
+		<h1 class="user-name-gravatar">
+			<%= gravatar_for @user %>
+			<%= @user.name %>
+		</h1>
 		<% if current_user.isadmin? %>
-			<b>User Class:</b> <span style="color:blue">Administrator</span><br>
-			<b>Administrator Notes:</b> <%= @user.notes %><br>
+			<strong>User Class:</strong> <span style="color:blue">Administrator</span><br>
+			<strong>Administrator Notes:</strong> <%= @user.notes %><br>
 		<% end %>
-		<b>Account Status:<b/>
+		<strong>Account Status:</strong>
 		<% if @user.verified? %>
 			<span style="color:green">Verified User</span>
 		<% else %>
 			<span style="color:red">Unverified User</span>
 		<% end %><br>
-		<b>Email:</b> <%= @user.email %><br>
-		<b>Address:</b> <%= @user.address %><br>
-		<b>Organization:</b> <%= @user.organization %><br>
-		<b>Insurance Provider:</b> <%= @user.insuranceprovider %><br>
-		<b>Insurance Policy Number:</b> <%= @user.policynum %><br>
+		<strong>Email:</strong> <%= @user.email %><br>
+		<strong>Address:</strong> <%= @user.address %><br>
+		<strong>Organization:</strong> <%= @user.organization %><br>
+		<strong>Insurance Provider:</strong> <%= @user.insuranceprovider %><br>
+		<strong>Insurance Policy Number:</strong> <%= @user.policynum %><br>
+	</div>
+	<div class="col-sm-12 col-md-3">
+		<%= link_to "Edit Account", "/users/#{@user.id}/edit", :class => 'btn btn-primary user-profile-edit-btn' %>
 	</div>
 </div>

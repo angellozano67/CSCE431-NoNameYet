@@ -1,25 +1,47 @@
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+  <%= render 'shared/error_messages' %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="form-group">
+    <%= f.label :name, "Name" %> <span style=color:red>*</span>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :email %> <span style=color:red>*</span>
+    <%= f.email_field :email, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+  
+  <div class="form-group">
+    <%= f.label :password %> <span style=color:red>*</span>
+    <%= f.password_field :password, class: 'form-control' %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  
+  <div class="form-group">
+    <%= f.label :password_confirmation, "Password Confirmation" %> <span style=color:red>*</span>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :address %> <span style=color:red>*</span>
+    <%= f.text_field :address, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :organization %> <span style=color:red>*</span>
+    <%= f.text_field :organization, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :insuranceprovider, "Insurance Provider" %>
+    <%= f.text_field :insuranceprovider, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :policynum, "Insurance Policy Number" %>
+    <%= f.text_field :policynum, class: 'form-control' %>
+  </div>
+    
+  <div class="form-group">
+    <%= f.submit @user.new_record? ? 'Create account' : 'Edit account', class: "btn btn-primary" %>
   </div>
 <% end %>
