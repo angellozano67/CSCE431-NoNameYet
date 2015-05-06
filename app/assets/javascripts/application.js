@@ -15,27 +15,68 @@
 //= require turbolinks
 //= require_tree ./fullcalendar/lib
 //= require_tree ./fullcalendar
+//= require bootstrap-clockpicker
+//= require clockpicker
+//= require bootstrap-datetimepicker.min
 //= require bootstrap-sprockets
 //= require_tree .
 
 var reservationReady = function() {
-    jQuery('#calendar').fullCalendar({
+
+    var datetimepickerstart = jQuery('#reservation-datetimepicker-start').datetimepicker({
+        locale: 'en',
+        // defaultDate: '1/1/2015',
+        format: 'LT',
+    });
+    var datetimepickerend = jQuery('#reservation-datetimepicker-end').datetimepicker({
+        locale: 'en',
+        // defaultDate: '1/1/2015',
+        format: 'LT',
+    });
+    
+    var calendar = jQuery('#calendar').fullCalendar({
         lang: 'en',
-    
-        // To make your own Google API key, follow the directions here:
-        // http://fullcalendar.io/docs/google_calendar/
+        timezone: 'America/Chicago',
+
         googleCalendarApiKey: 'AIzaSyAGmJE0j1dmN8V2zTKB4ts7qt1j2QlAoIg',
-    
-        // US Holidays
         events: '0t4f3bofduamfqof89t96tg1jk@group.calendar.google.com',
         
         eventClick: function(event) {
             // opens events in a popup window
-            window.open(event.url, 'gcalevent', 'width=700,height=600');
+            var win = window.open(event.url, '_blank');
+            if(win){
+                //Browser has allowed it to be opened
+                win.focus();
+            }else{
+                //Broswer has blocked it
+                alert('Please allow popups for this site');
+            }
             return false;
         },
+
+        selectable: true,
+        selectHelper: true,
+
         
-        
+        select: function(start, end, allDay) {
+            // console.log(start.format('M/D/YYYY'));
+            jQuery('.reservation-modal').modal();
+            datetimepickerstart.data('DateTimePicker').date(start);
+            datetimepickerend.data('DateTimePicker').date(start);
+
+            // if (title) {
+            //     calendar.fullCalendar('renderEvent',
+            //         {
+            //             title: title,
+            //             start: start,
+            //             end: end,
+            //             allDay: allDay
+            //         },
+            //         true // make the event "stick"
+            //     );
+            // }
+            // calendar.fullCalendar('unselect');
+        }
     });
 }
 

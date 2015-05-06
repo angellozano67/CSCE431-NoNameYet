@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+    before_action :logged_in_user, only: [:reservation]
     def index
 
     end
@@ -9,6 +10,9 @@ class ApplicationController < ActionController::Base
 
     end
     def login
+
+    end
+    def reservation
 
     end
     # Prevent CSRF attacks by raising an exception.
