@@ -10,8 +10,10 @@ Rails.application.routes.draw do
 	post   'login'   => 'sessions#create'
 	delete 'logout'  => 'sessions#destroy'
     get    'reservation' => 'application#reservation'
+    get    'newauth'     => 'application#newauth'
+    get    "/auth/:provider/callback" => 'application#createauth'
 
-    resources :users, :maintenance_forms
+    resources :users, :maintenance_forms, :application
     # The priority is based upon order of creation: first created -> highest priority.
     # See how all your routes lay out with "rake routes".
 
