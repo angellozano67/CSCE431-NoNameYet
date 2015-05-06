@@ -6,8 +6,10 @@
 			<%= gravatar_for @user %>
 			<%= @user.name %>
 		</h1>
-		<% if current_user.isadmin? %>
+		<% if @user.isadmin? %>
 			<strong>User Class:</strong> <span style="color:blue">Administrator</span><br>
+		<% end %>
+		<% if current_user.isadmin? %>
 			<strong>Administrator Notes:</strong> <%= @user.notes %><br>
 		<% end %>
 		<strong>Account Status:</strong>
