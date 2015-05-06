@@ -93,12 +93,23 @@ var reservationReady = function() {
             data : formData,
             success: function(data, textStatus, jqXHR)
             {
-                console.log(data)
-                var calEvent = {
-                    title: 'Vehicle Reservation'
-                };
-                // calendar.fullCalendar('renderEvent', calEvent);
+                // Don't need to do this as long as updating GCal
+                // var eventJson = jQuery.parseJSON(data);
+                // var start = new Date(parseInt(eventJson['start']) * 1000),
+                //     end = new Date(parseInt(eventJson['end']) * 1000);
+                // var startUTC = new Date(start.getTime() + start.getTimezoneOffset() * 60000),
+                //     endUTC = new Date(end.getTime() + end.getTimezoneOffset() * 60000);
+                // var calEvent = {
+                //     title: 'Vehicle Reservation',
+                //     start: startUTC,
+                //     end: endUTC
+                // };
+
+                // calendar.fullCalendar('renderEvent', calEvent, true);
                 jQuery('.reservation-modal').modal('hide');
+
+                calendar.fullCalendar('unselect');
+                calendar.fullCalendar('refetchEvents');
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
