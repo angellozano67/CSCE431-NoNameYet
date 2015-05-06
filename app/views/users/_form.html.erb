@@ -1,6 +1,21 @@
 <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages' %>
 
+  <% if current_user.isadmin? %>
+	  
+	  <% if !current_user?(@user) %>
+	  <div class="form-group">
+	  <%= f.label :verified %>
+	  <%= f.check_box :verified, class: 'form-control', 'verified' => 'true', 'verified' => 'false' %>
+	  </div>
+	  <% end %>
+	  
+	  <div class="form-group">
+	  <%= f.label :notes, "Administrator Notes" %>
+	  <%= f.text_field :notes, class:'form-control' %>
+	  </div>
+  <% end %>
+  
   <div class="form-group">
     <%= f.label :name, "Name" %> <span style=color:red>*</span>
     <%= f.text_field :name, class: 'form-control' %>
