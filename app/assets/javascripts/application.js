@@ -12,7 +12,25 @@
 //
 //= require jquery
 //= require jquery_ujs
-
 //= require turbolinks
+//= require_tree ./fullcalendar/lib
+//= require_tree ./fullcalendar
 //= require bootstrap-sprockets
 //= require_tree .
+
+var reservationReady = function() {
+    jQuery('#calendar').fullCalendar({
+        lang: 'en',
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        // defaultDate: '2015-02-12',
+        editable: true,
+        eventLimit: true, // allow "more" link when too many events
+        events: []
+    });
+}
+
+jQuery('.reservation').ready(reservationReady);
