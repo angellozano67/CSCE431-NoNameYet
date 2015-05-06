@@ -6,7 +6,7 @@
 		<%= f.check_box :verified, class: 'form-control', 'verified' => 'true', 'verified' => 'false' %>
 		</div>
 	  <% elsif !current_user.verified? %>
-		<%= f.hidden_field :verified, 'verified' => 'true' %>
+		<%= f.hidden_field :verified, :value => true %>
 	  <% end %>
 	  
 	  <div class="form-group">
