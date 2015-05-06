@@ -34,6 +34,35 @@ var reservationReady = function() {
         format: 'LT',
     });
 
+<<<<<<< HEAD
+=======
+    jQuery('#reservation-form-submit').click(function() {
+        // var start = datetimepickerstart.data('DateTimePicker').date().format('MM/DD/YYYY - H:mm');
+        var start = datetimepickerstart.data('DateTimePicker').date().utc().format();
+        // var end = datetimepickerend.data('DateTimePicker').date().format('MM/DD/YYYY - H:mm');
+        var end = datetimepickerend.data('DateTimePicker').date().utc().format();
+
+        var formData = {startDate: start, endDate: end};
+
+        jQuery.ajax({
+            url : "/reservations/create",
+            type: "POST",
+            data : formData,
+            success: function(data, textStatus, jqXHR)
+            {
+                console.log(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                console.log("ERROR");
+                console.log(jqXHR);
+            }
+        });
+
+        return false;
+    });
+
+>>>>>>> Reservation logic
     var calendar = jQuery('#calendar').fullCalendar({
         lang: 'en',
         timezone: 'America/Chicago',
