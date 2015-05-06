@@ -7,7 +7,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'google-api-client'
+gem 'google-api-client', :require => 'google/api_client'
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-google-oauth2'
 group :development, :test do
