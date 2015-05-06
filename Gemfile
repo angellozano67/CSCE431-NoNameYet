@@ -29,14 +29,18 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'cucumber'
   gem 'rspec-rails'
+  gem 'rspec-expectations'
+  gem 'poltergeist', ">= 1.4.0"
+  gem 'selenium-webdriver'
+  gem 'launchy'
+  gem 'capybara'
+  gem 'rest-client'
 end
 group :production do
   gem 'rails_12factor'
 end
 group :test do
-  gem 'capybara'
   gem 'database_cleaner'
-  gem 'launchy'
-  gem 'selenium-webdriver'
 end
