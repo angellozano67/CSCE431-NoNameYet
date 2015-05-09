@@ -39,8 +39,8 @@ var reservationReady = function() {
         lang: 'en',
         timezone: 'America/Chicago',
 
-        googleCalendarApiKey: 'AIzaSyAGmJE0j1dmN8V2zTKB4ts7qt1j2QlAoIg',
-        events: '0t4f3bofduamfqof89t96tg1jk@group.calendar.google.com',
+        googleCalendarApiKey: 'AIzaSyDGV_874GtglGGJlevdhc3n8Mt_sISyFYw',
+        events: 'villalpandoc@gmail.com',
         
         eventClick: function(event) {
             // opens events in a popup window
@@ -85,7 +85,7 @@ var reservationReady = function() {
         var start = datetimepickerstart.data('DateTimePicker').date().utc().format();
         // var end = datetimepickerend.data('DateTimePicker').date().format('MM/DD/YYYY - H:mm');
         var end = datetimepickerend.data('DateTimePicker').date().utc().format();
-
+        console.log(datetimepickerend.data('DateTimePicker').date().utc().format())
         var formData = {startDate: start, endDate: end};
 
         jQuery.ajax({
@@ -94,6 +94,8 @@ var reservationReady = function() {
             data : formData,
             success: function(data, textStatus, jqXHR)
             {
+                console.log("SUccfunct")
+                console.log(start)
                 // Don't need to do this as long as updating GCal
                 // var eventJson = jQuery.parseJSON(data);
                 // var start = new Date(parseInt(eventJson['start']) * 1000),
@@ -108,7 +110,8 @@ var reservationReady = function() {
 
                 // calendar.fullCalendar('renderEvent', calEvent, true);
                 jQuery('.reservation-modal').modal('hide');
-
+                console.log(data)
+                jQuery('body').append(data);
                 calendar.fullCalendar('unselect');
                 calendar.fullCalendar('refetchEvents');
             },
