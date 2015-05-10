@@ -20,33 +20,34 @@ class ReservationsController < ApplicationController
 
         require 'pp'
         # ADD EVENT TO GOOGLE CALENDAR
-        client = Google::APIClient.new
-        client.authorization.access_token = Token.last.fresh_token
-        service = client.discovered_api('calendar', 'v3')
-        calEvent = {
-        "start": 
-        {
-         "dateTime": params[:startDate],
-         "timeZone":"America/Chicago"
-        },
-        "end": 
-        {
-         "dateTime": params[:endDate],
-         "timeZone":"America/Chicago"
-        },
-        "summary": "Vehicle Reservation: #{current_user.name}"
-        }
-      result = client.execute(
-        :api_method => service.events.insert,
-        :parameters => {'calendarId' => 'primary'},
-        :body => JSON.dump(calEvent),
-        :headers => {'Content-Type' => 'application/json'})
-      pp JSON.parse(result.body)
+      #   client = Google::APIClient.new
+      #   client.authorization.access_token = Token.last.fresh_token
+      #   service = client.discovered_api('calendar', 'v3')
+      #   calEvent = {
+      #   "start":
+      #   {
+      #    "dateTime": params[:startDate],
+      #    "timeZone":"America/Chicago"
+      #   },
+      #   "end":
+      #   {
+      #    "dateTime": params[:endDate],
+      #    "timeZone":"America/Chicago"
+      #   },
+      #   "summary": "Vehicle Reservation: #{current_user.name}"
+      #   }
+      # result = client.execute(
+      #   :api_method => service.events.insert,
+      #   :parameters => {'calendarId' => 'primary'},
+      #   :body => JSON.dump(calEvent),
+      #   :headers => {'Content-Type' => 'application/json'})
+      # pp JSON.parse(result.body)
 
-        
+
         require 'json'
 
-        render plain: result.inspect
+        # render plain: result.inspect
+        render plain: event.inspect
     end
     def all
         @reservations = Reservation.all

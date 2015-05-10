@@ -21,8 +21,9 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
+var registered = false;
 var reservationReady = function() {
-    if (!jQuery('.reservation')) return;
+    if (!jQuery('.reservation') || registered) return;
 
     var datetimepickerstart = jQuery('#reservation-datetimepicker-start').datetimepicker({
         locale: 'en',
@@ -39,9 +40,9 @@ var reservationReady = function() {
         lang: 'en',
         timezone: 'America/Chicago',
 
-        googleCalendarApiKey: 'AIzaSyDGV_874GtglGGJlevdhc3n8Mt_sISyFYw',
-        events: 'villalpandoc@gmail.com',
-        
+        googleCalendarApiKey: 'AIzaSyAGmJE0j1dmN8V2zTKB4ts7qt1j2QlAoIg',
+        events: '0t4f3bofduamfqof89t96tg1jk@group.calendar.google.com',
+
         eventClick: function(event) {
             // opens events in a popup window
             var win = window.open(event.url, '_blank');
@@ -58,7 +59,7 @@ var reservationReady = function() {
         selectable: true,
         selectHelper: true,
 
-        
+
         select: function(start, end, allDay) {
             // console.log(start.format('M/D/YYYY'));
             jQuery('.reservation-modal').modal();
@@ -82,11 +83,19 @@ var reservationReady = function() {
 
     jQuery('#reservation-form-submit').click(function() {
         // var start = datetimepickerstart.data('DateTimePicker').date().format('MM/DD/YYYY - H:mm');
-        var start = datetimepickerstart.data('DateTimePicker').date().utc().format();
+        var start = datetimepickerstart.data('DateTimePicker').date().format('YYYY-MM-DDTHH:mm:ss');
         // var end = datetimepickerend.data('DateTimePicker').date().format('MM/DD/YYYY - H:mm');
-        var end = datetimepickerend.data('DateTimePicker').date().utc().format();
-        console.log(datetimepickerend.data('DateTimePicker').date().utc().format())
+        var end = datetimepickerend.data('DateTimePicker').date().format('YYYY-MM-DDTHH:mm:ss');
+        //console.log(datetimepickerend.data('DateTimePicker').date().utc().format())
+
+
+        var start = moment.tz(start, 'America/Chicago').format();
+        var end = moment.tz(end, 'America/Chicago').format();
+
         var formData = {startDate: start, endDate: end};
+
+        // console.log(formData);
+        // return;
 
         jQuery.ajax({
             url : "/reservations/create",
@@ -95,7 +104,7 @@ var reservationReady = function() {
             success: function(data, textStatus, jqXHR)
             {
                 console.log("SUccfunct")
-                console.log(start)
+                console.log(data)
                 // Don't need to do this as long as updating GCal
                 // var eventJson = jQuery.parseJSON(data);
                 // var start = new Date(parseInt(eventJson['start']) * 1000),
@@ -110,8 +119,7 @@ var reservationReady = function() {
 
                 // calendar.fullCalendar('renderEvent', calEvent, true);
                 jQuery('.reservation-modal').modal('hide');
-                console.log(data)
-                jQuery('body').append(data);
+                //jQuery('body').append(data);
                 calendar.fullCalendar('unselect');
                 calendar.fullCalendar('refetchEvents');
             },
@@ -119,6 +127,8 @@ var reservationReady = function() {
             {
                 console.log("ERROR");
                 console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
             }
         });
 
@@ -126,6 +136,8 @@ var reservationReady = function() {
     });
 }
 
-jQuery(document).ready(reservationReady);
-// jQuery(document).ready(reservationReady);
+// jQuery(document).ready(function() {
+//     registered = false;
+//     reservationReady();
+// });
 jQuery(window).on('page:change', reservationReady);
