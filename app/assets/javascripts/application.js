@@ -42,6 +42,8 @@ var reservationReady = function() {
 
         googleCalendarApiKey: 'AIzaSyDGV_874GtglGGJlevdhc3n8Mt_sISyFYw',
         events: 'villalpandoc@gmail.com',
+        // googleCalendarApiKey: 'AIzaSyAGmJE0j1dmN8V2zTKB4ts7qt1j2QlAoIg',
+        // events: '0t4f3bofduamfqof89t96tg1jk@group.calendar.google.com',
 
         eventClick: function(event) {
             // opens events in a popup window

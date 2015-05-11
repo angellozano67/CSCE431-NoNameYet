@@ -11,11 +11,11 @@ gem 'google-api-client', :require => 'google/api_client'
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-google-oauth2'
 gem 'json'
-
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'dotenv-rails', github: "bkeepers/dotenv"
 end
 gem 'bootstrap-sass'
 gem 'haml-rails'
