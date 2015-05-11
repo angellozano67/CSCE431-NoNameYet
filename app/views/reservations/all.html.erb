@@ -16,7 +16,7 @@
                 <td><%= User.find(r.user_id).name %></td>
                 <td><%= DateTime.strptime(r.start_time,'%s').in_time_zone(ActiveSupport::TimeZone.new("Central Time (US & Canada)")).strftime('%B %d, %Y - %I:%M%P') %></td>
                 <td><%= DateTime.strptime(r.end_time,'%s').in_time_zone(ActiveSupport::TimeZone.new("Central Time (US & Canada)")).strftime('%B %d, %Y - %I:%M%P') %></td>
-                <td><%= link_to "Delete", r, method: :delete, data: { confirm: "Are you sure you want to delete this reservation?" } %></td>
+                <td><%= link_to "", r, :method => :delete, :data => {confirm: "Are you sure you want to delete this reservation?"}, :class => "glyphicon glyphicon-trash", :alt => "Delete reservation", :title => "Delete reservation" %></td>
             </tr>
         <% end %>
         </tbody>
