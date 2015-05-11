@@ -4,8 +4,8 @@ class CreateTokens < ActiveRecord::Migration
       t.string :access_token
       t.string :refresh_token
       t.datetime :expires_at
-      t.datetime :created_at
-      t.datetime :update_at
+      t.datetime :created_at , null:false
+      t.datetime :update_at, null:false
     end
   end
 end
