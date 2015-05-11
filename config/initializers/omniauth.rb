@@ -4,5 +4,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   scope: ['email',
     'https://www.googleapis.com/auth/calendar'],
     access_type: 'offline',
-	redirect_uri: 'http://example.ngrok.io/auth/google_oauth2/callback'}
+	redirect_uri: "#{ENV['ROOT_URL']}/auth/google_oauth2/callback"}
 end

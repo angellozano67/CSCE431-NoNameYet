@@ -1,8 +1,10 @@
 <% provide(:title, 'Reserve Vehicle') %>
 <div class="reservation">
+    <input type="hidden" id="gcal_api_key" value="<%= ENV['GCAL_API_KEY'] %>">
+    <input type="hidden" id="gcal_url" value="<%= ENV['GCAL_URL'] %>">
     <div id="calendar"></div>
     <!-- Modal -->
-    <div class="reservation-modal modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="reservation-modal modal fade" id="reservation-modal-create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -34,6 +36,23 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button id="reservation-form-submit" type="button" class="btn btn-primary">Create Reservation</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reservation-modal modal fade" id="reservation-modal-view" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h2 class="modal-title" id="reservation-label">View Reservation</h2>
+          </div>
+          <div class="modal-body">
+            <div class="reservation-view-start"><p><strong>Start</strong>: <span class="time"></span></p></div>
+            <div class="reservation-view-end"><p><strong>End</strong>: <span class="time"></span></p></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

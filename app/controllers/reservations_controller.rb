@@ -10,14 +10,6 @@ class ReservationsController < ApplicationController
         startDate = DateTime.parse(params[:startDate])
         endDate = DateTime.parse(params[:endDate])
 
-        res = Reservation.new
-        res.user_id = current_user.id
-        res.start_time = startDate.to_time.to_i
-        res.end_time = endDate.to_time.to_i
-        res.save
-
-        event = {:name => "Vehicle Reservation: #{current_user.name}", :start => res.start_time, :end => res.end_time}
-
         require 'pp'
         # ADD EVENT TO GOOGLE CALENDAR
          client = Google::APIClient.new
@@ -36,15 +28,23 @@ class ReservationsController < ApplicationController
          }
        result = client.execute(
          :api_method => service.events.insert,
-         :parameters => {'calendarId' => 'primary'},
+         :parameters => {'calendarId' => ENV['GCAL_URL']},
          :body => JSON.dump(calEvent),
          :headers => {'Content-Type' => 'application/json'})
-       pp JSON.parse(result.body)
+       response = pp JSON.parse(result.body)
+
+       res = Reservation.new
+       res.user_id = current_user.id
+       res.start_time = startDate.to_time.to_i
+       res.end_time = endDate.to_time.to_i
+       res.gcal_eventId = response['id']
+       res.save
+       event = {:name => "Vehicle Reservation: #{current_user.name}", :start => res.start_time, :end => res.end_time}
 
 
-        require 'json'
+        # require 'json'
 
-        # render plain: result.inspect
+        # render plain: response
         render plain: event.inspect
     end
     def all
@@ -52,13 +52,23 @@ class ReservationsController < ApplicationController
     end
 
     def destroy
-        Reservation.find(params[:id]).destroy
-
+        res = Reservation.find(params[:id])
         # REMOVE EVENT TO GOOGLE CALENDAR
+        client = Google::APIClient.new
+        client.authorization.access_token = Token.last.fresh_token
+        service = client.discovered_api('calendar', 'v3')
+        result = client.execute(
+          :api_method => service.events.delete,
+          :parameters => {'calendarId' => ENV['GCAL_URL'], 'eventId' => res.gcal_eventId},
+          :headers => {'Content-Type' => 'application/json'})
+        # response = pp JSON.parse(result.body)
+
+        Reservation.find(params[:id]).destroy
 
         flash[:success] = "Reservation deleted"
         redirect_to :back
 
+        # render plain: response.inspect
     end
 
     def logged_in_user

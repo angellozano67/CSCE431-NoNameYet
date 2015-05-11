@@ -40,21 +40,18 @@ var reservationReady = function() {
         lang: 'en',
         timezone: 'America/Chicago',
 
-        googleCalendarApiKey: 'AIzaSyDGV_874GtglGGJlevdhc3n8Mt_sISyFYw',
-        events: 'villalpandoc@gmail.com',
-        // googleCalendarApiKey: 'AIzaSyAGmJE0j1dmN8V2zTKB4ts7qt1j2QlAoIg',
-        // events: '0t4f3bofduamfqof89t96tg1jk@group.calendar.google.com',
+        // googleCalendarApiKey: 'AIzaSyDGV_874GtglGGJlevdhc3n8Mt_sISyFYw',
+        // events: 'villalpandoc@gmail.com',
+        googleCalendarApiKey: jQuery('#gcal_api_key').attr('value'),
+        events: jQuery('#gcal_url').attr('value'),
 
         eventClick: function(event) {
             // opens events in a popup window
-            var win = window.open(event.url, '_blank');
-            if(win){
-                //Browser has allowed it to be opened
-                win.focus();
-            }else{
-                //Broswer has blocked it
-                alert('Please allow popups for this site');
-            }
+            // console.log(event);
+            jQuery('#reservation-modal-view #reservation-label').text(event.title);
+            jQuery('#reservation-modal-view .reservation-view-start .time').text(event.start.format('MMM MM, YYYY - hh:mma'));
+            jQuery('#reservation-modal-view .reservation-view-end .time').text(event.end.format('MMM MM, YYYY - hh:mma'));
+            jQuery('#reservation-modal-view').modal();
             return false;
         },
 
@@ -64,7 +61,7 @@ var reservationReady = function() {
 
         select: function(start, end, allDay) {
             // console.log(start.format('M/D/YYYY'));
-            jQuery('.reservation-modal').modal();
+            jQuery('#reservation-modal-create').modal();
             datetimepickerstart.data('DateTimePicker').date(start);
             datetimepickerend.data('DateTimePicker').date(start);
 
@@ -105,8 +102,8 @@ var reservationReady = function() {
             data : formData,
             success: function(data, textStatus, jqXHR)
             {
-                console.log("SUccfunct")
-                console.log(data)
+                // console.log("SUccfunct")
+                // console.log(data)
                 // Don't need to do this as long as updating GCal
                 // var eventJson = jQuery.parseJSON(data);
                 // var start = new Date(parseInt(eventJson['start']) * 1000),
@@ -120,17 +117,17 @@ var reservationReady = function() {
                 // };
 
                 // calendar.fullCalendar('renderEvent', calEvent, true);
-                jQuery('.reservation-modal').modal('hide');
-                //jQuery('body').append(data);
+                jQuery('#reservation-modal-create').modal('hide');
+                // jQuery('body').append(data);
                 calendar.fullCalendar('unselect');
                 calendar.fullCalendar('refetchEvents');
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
-                console.log("ERROR");
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
+                // console.log("ERROR");
+                // console.log(jqXHR);
+                // console.log(textStatus);
+                // console.log(errorThrown);
             }
         });
 
