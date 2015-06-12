@@ -81,7 +81,7 @@ class ReservationsController < ApplicationController
     def verified_user
         unless logged_in? and current_user.verified
             store_location
-            flash[:danger] = "You're account is not verified"
+            flash[:danger] = "Your account is not verified"
             redirect_to "/users/#{current_user.id}"
         end
     end
